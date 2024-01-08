@@ -1,23 +1,12 @@
-const express = require("express");
+// contactRouter.js
+import express from 'express';
+import { sendContactMessage } from '../controllers/mail.controller.js';
+import { validateContactData } from '../utils/email-validator.js';
+
 const router = express.Router();
-const transporter = require("../config/mail.config");
 
-router.post("/send-email", (req, res, next) => {
-    const { email, subject, message } = req.body;
-    const mailOptions = {
-        from: process.env.MAIL_FROM,
-        to: email,
-        subject: subject,
-        text: message,
-    };
-    transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-            res.status(500).json(err);
-        } else {
-            res.status(200).json({ message: "Email sent" });
-        }
-    });
-}
-);
+router.post('/send', validateContactData, (req, res) => {
+  sendContactMessage(req, res);
+});
 
-module.exports = router;
+export default router;
