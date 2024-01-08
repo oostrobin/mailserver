@@ -1,0 +1,29 @@
+Here's the recommended content for your .gitignore file to exclude sensitive information and unnecessary files from version control:
+
+# Environment variables
+.env
+
+# Node modules
+node_modules/
+
+# Build artifacts (if applicable)
+build/
+dist/
+
+# Log files
+logs/
+*.log
+
+# Temporary files
+tmp/
+
+# macOS-specific files
+.DS_Store
+
+# Windows-specific files
+Thumbs.db
+
+# Editor-specific files
+*.suo
+*.sln
+*.sublime-workspace
