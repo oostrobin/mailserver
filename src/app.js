@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from "./src/config/dotenv.config.js"
-import emailRoutes from './src/routes/mail.routes.js';
+import dotenv from "./config/dotenv.config.js"
+import emailRoutes from './routes/mail.routes.js';
 
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
