@@ -1,5 +1,7 @@
 import transporter from '../config/nodemailer.config.js';
 import dotenv from '../config/dotenv.config.js';
+import path from 'path';
+import hbs from 'nodemailer-express-handlebars';
 
 const sendContactMessage = (req, res) => {
   const { name, email, message, subject } = req.body;
@@ -7,9 +9,24 @@ const sendContactMessage = (req, res) => {
     from: process.env.MAIL_FROM,
     to: process.env.MAIL_FROM,
     subject: 'Nieuw bericht van contactformulier',
-    text: `From: ${name} Email: ${email} Message: ${message}`,
-    html: `<p>From: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p><p>Subject: ${subject}</p>`,
+    template: 'contact-form',
+    context: {
+      name,
+      email,
+      message,
+      subject,
+    },
   };
+
+  const handlebarOptions = {
+    viewEngine: {
+        partialsDir: path.resolve('src/views'),
+        defaultLayout: false,
+    },
+    viewPath: path.resolve('src/views'),
+};
+
+transporter.use('compile', hbs(handlebarOptions))
 
   transporter.sendMail(mailData, (error, info) => {
     if (error) {
