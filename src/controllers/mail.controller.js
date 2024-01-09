@@ -20,3 +20,4 @@ const sendContactMessage = (req, res) => {
 };
 
 export { sendContactMessage };
+
