@@ -1,4 +1,5 @@
 import transporter from '../config/nodemailer.config.js';
+import dotenv from '../config/dotenv.config.js';
 
 const sendContactMessage = (req, res) => {
   const { name, email, message } = req.body;

@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from "./config/dotenv.config.js"
 import emailRoutes from './routes/mail.routes.js';
 
 const app = express();
