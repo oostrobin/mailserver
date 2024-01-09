@@ -5,8 +5,8 @@ const sendContactMessage = (req, res) => {
   const { name, email, message } = req.body;
   const mailData = {
     from: process.env.MAIL_FROM,
-    to: email,
-    subject: 'New Message from Contact Form',
+    to: process.env.MAIL_FROM,
+    subject: 'Nieuw bericht van contactformulier',
     text: `From: ${name} Email: ${email} Message: ${message}`,
     html: `<p>From: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
   };
