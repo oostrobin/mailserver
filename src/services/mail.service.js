@@ -1,8 +1,14 @@
 import transporter from "../config/nodemailer.config.js";
 
 
-const sendEmail = (mailData, callback) => {
-    transporter.sendMail(mailData, callback);
-  };
-
-  export { sendEmail };
+export const sendEmail = (mailData) => {
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(mailData, (error, info) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(info);
+      }
+    });
+  });
+ };
