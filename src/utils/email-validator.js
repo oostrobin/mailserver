@@ -1,8 +1,9 @@
 const validateContactData = (req, res, next) => {
-    const { name, email, message } = req.body;
+    console.log(req.body)
+    const { name, email, message, subject } = req.body;
   
-    if (!name || !email || !message) {
-      return res.status(400).json({ error: 'Name, email, and message are required fields' });
+    if (!name || !email || !message || !subject) {
+      return res.status(400).json({ error: 'Name, email, subject and message are required fields' });
     }
   
     if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string') {

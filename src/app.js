@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.use('/', emailRoutes);
+app.use('/api/v1', emailRoutes);
 
 app.listen(port, () => {
   console.log(`mail app listening at http://localhost:${port}`);

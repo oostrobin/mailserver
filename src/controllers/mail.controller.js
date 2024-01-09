@@ -2,13 +2,13 @@ import transporter from '../config/nodemailer.config.js';
 import dotenv from '../config/dotenv.config.js';
 
 const sendContactMessage = (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email, message, subject } = req.body;
   const mailData = {
     from: process.env.MAIL_FROM,
     to: process.env.MAIL_FROM,
     subject: 'Nieuw bericht van contactformulier',
     text: `From: ${name} Email: ${email} Message: ${message}`,
-    html: `<p>From: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
+    html: `<p>From: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p><p>Subject: ${subject}</p>`,
   };
 
   transporter.sendMail(mailData, (error, info) => {
