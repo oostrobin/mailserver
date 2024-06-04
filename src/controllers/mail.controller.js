@@ -28,3 +28,35 @@ const prepareEmailData = (req) => {
 
 export { sendContactMessage };
 
+const prepareQuoteData = (req) => {
+  const { name, email, postcode, houseNumber, addition, consideringEv, consideringHeatPump, isOwner, phone, yearlyElectricityUsage } = req.body;
+  return {
+    from: process.env.MAIL_FROM,
+    to: process.env.MAIL_FROM,
+    subject: 'Nieuw bericht van lead aanvraag formulier',
+    template: 'lead-request',
+    context: {
+      postcode,
+      houseNumber,
+      addition,
+      consideringEv,
+      consideringHeatPump,
+      email,
+      isOwner,
+      name,
+      phone,
+      yearlyElectricityUsage
+    },
+  };
+};
+
+export const sendLeadRequest = async (req, res) => {
+  try {
+    const mailData = prepareQuoteData(req);
+    const info = await sendEmail(mailData);
+    res.status(200).send({ message: 'Email sent successfully', info });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
+
