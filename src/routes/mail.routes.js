@@ -1,6 +1,6 @@
 // contactRouter.js
 import express from 'express';
-import { sendContactMessage } from '../controllers/mail.controller.js';
+import { sendContactMessage, sendLeadRequest } from '../controllers/mail.controller.js';
 import { validateContactData, validateLeadRequestData } from '../utils/email-validator.js';
 
 const router = express.Router();

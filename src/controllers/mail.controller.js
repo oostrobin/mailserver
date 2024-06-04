@@ -32,7 +32,7 @@ const prepareQuoteData = (req) => {
   const { name, email, postcode, houseNumber, addition, consideringEv, consideringHeatPump, isOwner, phone, yearlyElectricityUsage } = req.body;
   return {
     from: process.env.MAIL_FROM,
-    to: process.env.MAIL_FROM,
+    to: "oostrobin@protonmail.com",
     subject: 'Nieuw bericht van lead aanvraag formulier',
     template: 'lead-request',
     context: {
