@@ -28,32 +28,31 @@ const prepareEmailData = (req) => {
 
 export { sendContactMessage };
 
-const prepareQuoteData = (req) => {
-  const { name, email, postcode, houseNumber, addition, consideringEv, consideringHeatPump, isOwner, phone, yearlyElectricityUsage } = req.body;
+const prepareLeadData = (req) => {
+  const { postcode, houseNumber, isOwner, yearlyElectricityUsage, consideringHeatPump, consideringEV, name, email, phone } = req.body;
   return {
     from: process.env.MAIL_FROM,
-    to: "oostrobin@protonmail.com",
+    to: process.env.MAIL_FROM,
     subject: 'Nieuw bericht van lead aanvraag formulier',
-    template: 'lead-request',
+    template: 'lead-form',
     context: {
       postcode,
       houseNumber,
-      addition,
-      consideringEv,
-      consideringHeatPump,
-      email,
       isOwner,
+      yearlyElectricityUsage,
+      consideringHeatPump,
+      consideringEV,
       name,
-      phone,
-      yearlyElectricityUsage
+      email,
+      phone
     },
   };
 };
 
-export const sendLeadRequest = async (req, res) => {
+export const sendLeadRequestData = async (req, res) => {
   try {
-    const mailData = prepareQuoteData(req);
-    const info = await sendEmail(mailData);
+    const leadData = prepareLeadData(req);
+    const info = await sendEmail(leadData);
     res.status(200).send({ message: 'Email sent successfully', info });
   } catch (error) {
     res.status(500).send({ error: error.message });

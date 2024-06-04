@@ -4,6 +4,7 @@ import transporter from "../config/nodemailer.config.js";
 export const sendEmail = async (mailData) => {
   try {
     const info = await transporter.sendMail(mailData);
+    console.log(info);
     return info;
   } catch (error) {
     let errorMessage;

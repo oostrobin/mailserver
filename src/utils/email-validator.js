@@ -34,13 +34,4 @@ const validateContactData = (req, res, next) => {
   
 export { validateContactData };
 
-export const validateLeadRequestData = (req, res, next) => {
-    const { postcode, houseNumber, addition, consideringEv, consideringHeatPump, isOwner, name, phone, yearlyElectricityUsage } = req.body;
-
-    if (!postcode || !houseNumber || !addition || !consideringEv || !consideringHeatPump || !isOwner || !name || !phone || !yearlyElectricityUsage) {
-        return res.status(400).json({ error: 'Postcode, huisnummer, toevoeging, ev-consultant, warmtepomp-consultant, eigenaar, naam, telefoonnummer en jaartal verbruik zijn verplichte velden' });
-    }
-
-
-}
 
